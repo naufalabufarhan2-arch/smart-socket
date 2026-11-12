@@ -3,10 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Socket Guard - 3 Channel Monitoring & Proteksi</title>
+  <title>Smart Socket Guard - Polibatam 3-Channel Monitoring</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            poliblue: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+            polinavy: {
+              800: '#0f233d',
+              850: '#0c1d33',
+              900: '#091627',
+              950: '#060f1b',
+            },
+            poliorange: {
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+            }
+          }
+        }
+      }
+    }
+  </script>
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,27 +48,30 @@
 
   <style>
     @keyframes pulseDanger {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
       50% { box-shadow: 0 0 25px 8px rgba(239, 68, 68, 0.4); }
     }
     .animate-pulse-danger { animation: pulseDanger 1.5s infinite; }
     
+    /* Polibatam Theme Power Button */
     .power-btn-on {
-      background: radial-gradient(circle at 35% 35%, #10b981, #047857);
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
-      border: 3px solid #34d399;
+      background: radial-gradient(circle at 35% 35%, #38bdf8, #0284c7);
+      box-shadow: 0 0 22px rgba(14, 165, 233, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+      border: 3px solid #7dd3fc;
     }
     .power-btn-on:hover {
-      box-shadow: 0 0 28px rgba(16, 185, 129, 0.8);
+      box-shadow: 0 0 30px rgba(14, 165, 233, 0.85);
       transform: scale(1.03);
     }
     .power-btn-off {
-      background: radial-gradient(circle at 35% 35%, #334155, #0f172a);
-      border: 3px solid #475569;
+      background: radial-gradient(circle at 35% 35%, #1e293b, #091627);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      border: 3px solid #334155;
       color: #94a3b8;
     }
     .power-btn-off:hover {
       transform: scale(1.03);
+      border-color: #64748b;
     }
     .power-btn-tripped {
       background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b);
@@ -45,43 +80,42 @@
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen font-sans antialiased selection:bg-emerald-500 selection:text-white">
+<body class="bg-polinavy-950 text-slate-100 min-h-screen font-sans antialiased selection:bg-poliblue-500 selection:text-white">
 
-  <!-- Header Navigasi -->
-  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-xl">
-    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+  <!-- Header Navigasi Tema Polibatam -->
+  <header class="sticky top-0 z-40 bg-polinavy-900/95 backdrop-blur-md border-b border-poliblue-500/20 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-4 h-18 py-2 flex items-center justify-between">
       
-      <!-- Logo & Title -->
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 font-bold shadow-lg">
-          <i class="fa-solid fa-plug-circle-bolt text-xl"></i>
+      <!-- Brand & Polibatam Logo -->
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <!-- Logo Polibatam -->
+        <div class="bg-white rounded-xl p-1.5 shadow-md flex items-center justify-center border border-poliblue-400/40">
+          <img src="logo.png" alt="Polibatam Logo" class="h-9 sm:h-10 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
+          <!-- Fallback jika gambar belum terunduh -->
+          <div id="logoFallback" style="display:none;" class="w-10 h-10 rounded-lg bg-poliblue-500 text-white font-bold items-center justify-center text-xs">POLI</div>
         </div>
+        
         <div>
           <div class="flex items-center space-x-2">
             <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Smart Socket Guard</h1>
-            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30">3 CHANNEL</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-poliorange-500/20 text-poliorange-400 border border-poliorange-500/40">POLIBATAM</span>
+            <span class="hidden sm:inline px-2 py-0.5 rounded text-[10px] font-bold bg-poliblue-500/20 text-poliblue-400 border border-poliblue-500/30">3-CHANNEL</span>
           </div>
-          <p class="text-xs text-slate-400">Proteksi: Overcurrent • Overheated • Overvoltage</p>
+          <p class="text-[11px] sm:text-xs text-poliblue-200">IoT Power Safety • Overcurrent • Overheated • Overvoltage</p>
         </div>
       </div>
 
       <!-- Controls & Status Badges -->
       <div class="flex items-center space-x-2 sm:space-x-3">
-        <!-- Audio Alert Toggle -->
-        <button id="btnToggleSound" onclick="toggleSoundAlert()" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center space-x-1.5 transition">
-          <i class="fa-solid fa-volume-high text-emerald-400" id="soundIcon"></i>
+        <!-- Audio Beeper Toggle -->
+        <button id="btnToggleSound" onclick="toggleSoundAlert()" class="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-polinavy-800 hover:bg-polinavy-700 text-slate-200 text-xs flex items-center space-x-1.5 transition border border-poliblue-500/20 cursor-pointer">
+          <i class="fa-solid fa-volume-high text-poliorange-400" id="soundIcon"></i>
           <span class="hidden md:inline" id="soundText">Suara Aktif</span>
         </button>
 
-        <!-- Mode Indicator (GitHub Pages / Standalone vs Server) -->
-        <div id="modeBadge" class="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs bg-slate-800 border border-slate-700 text-slate-300">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span id="modeText">GitHub Pages Mode</span>
-        </div>
-
         <!-- Master Status Badge -->
-        <div id="masterStatusBadge" class="flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <div id="masterStatusBadge" class="flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-poliblue-500/10 text-poliblue-400 border border-poliblue-500/30 shadow">
+          <span class="w-2 h-2 rounded-full bg-poliblue-400 animate-ping"></span>
           <span id="masterStatusText">3 SOKET NORMAL</span>
         </div>
       </div>
@@ -95,28 +129,28 @@
     <!-- ========================================================================= -->
     <!-- ⭐ KOTAK KHUSUS: KONDISI & DIAGNOSTIK ALASAN TERPUTUS (TRIP REASON BOX) ⭐ -->
     <!-- ========================================================================= -->
-    <div id="tripDiagnosticBox" class="rounded-2xl border transition-all duration-300 shadow-xl overflow-hidden">
-      <div id="diagnosticContent" class="p-5 sm:p-6 bg-slate-900/90 border-slate-800">
-        <!-- Default State dirender langsung saat halaman dibuka -->
+    <div id="tripDiagnosticBox" class="rounded-2xl border transition-all duration-300 shadow-2xl overflow-hidden">
+      <div id="diagnosticContent" class="p-5 sm:p-6 bg-polinavy-900 border-poliblue-500/20">
+        <!-- Dynamic content: Normal or Tripped -->
       </div>
     </div>
 
     <!-- Master Action Bar -->
-    <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 px-4 text-xs">
-      <div class="flex items-center space-x-2 text-slate-300">
-        <i class="fa-solid fa-sliders text-teal-400"></i>
-        <span class="font-semibold">Aksi Serentak (Master Control):</span>
+    <div class="flex flex-wrap items-center justify-between gap-3 bg-polinavy-900/90 border border-poliblue-500/20 rounded-2xl p-3.5 px-4 text-xs shadow-lg">
+      <div class="flex items-center space-x-2 text-slate-200">
+        <i class="fa-solid fa-bolt-lightning text-poliorange-400"></i>
+        <span class="font-bold">Aksi Serentak (Master Control):</span>
       </div>
       <div class="flex flex-wrap items-center gap-2">
-        <button onclick="masterToggleAll(true)" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white font-medium rounded-lg transition flex items-center space-x-1.5 shadow">
+        <button onclick="masterToggleAll(true)" class="px-3.5 py-1.5 bg-poliblue-600 hover:bg-poliblue-500 text-white font-semibold rounded-xl transition flex items-center space-x-1.5 shadow-md shadow-poliblue-600/30 cursor-pointer">
           <i class="fa-solid fa-power-off"></i>
           <span>Nyalakan Semua (3 Soket)</span>
         </button>
-        <button onclick="masterToggleAll(false)" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-medium rounded-lg border border-slate-700 transition flex items-center space-x-1.5">
+        <button onclick="masterToggleAll(false)" class="px-3.5 py-1.5 bg-polinavy-800 hover:bg-polinavy-700 text-slate-300 hover:text-white font-medium rounded-xl border border-slate-700 transition flex items-center space-x-1.5 cursor-pointer">
           <i class="fa-solid fa-power-off"></i>
           <span>Matikan Semua</span>
         </button>
-        <button onclick="requestReset('all')" class="px-3 py-1.5 bg-teal-800 hover:bg-teal-700 text-white font-medium rounded-lg transition flex items-center space-x-1.5 shadow">
+        <button onclick="requestReset('all')" class="px-3.5 py-1.5 bg-poliorange-600 hover:bg-poliorange-500 text-white font-semibold rounded-xl transition flex items-center space-x-1.5 shadow-md shadow-poliorange-600/30 cursor-pointer">
           <i class="fa-solid fa-arrows-rotate"></i>
           <span>Reset Semua Proteksi</span>
         </button>
@@ -129,166 +163,166 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
       <!-- ================= SOKET #1 ================= -->
-      <div id="cardSocket1" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-all duration-300">
+      <div id="cardSocket1" class="bg-polinavy-900/90 border border-poliblue-500/20 rounded-2xl p-5 shadow-xl flex flex-col justify-between transition-all duration-300 hover:border-poliblue-400/40">
         <div class="space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-            <div class="flex items-center space-x-2">
-              <span class="w-6 h-6 rounded bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold text-xs">#1</span>
+          <div class="flex items-center justify-between pb-3 border-b border-poliblue-500/15">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-7 h-7 rounded-lg bg-poliblue-500/20 text-poliblue-400 flex items-center justify-center font-bold text-xs border border-poliblue-400/30">#1</span>
               <div>
                 <h3 class="text-sm font-bold text-white tracking-tight" id="nameSocket1">Stop Kontak #1 (TV & Media)</h3>
-                <span class="text-[10px] text-slate-400">Batas Arus: 10.0A • Max: 65°C</span>
+                <span class="text-[10px] text-poliblue-200">Batas: 10.0A • Max: 65°C</span>
               </div>
             </div>
-            <span id="pillSocket1" class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-400">ON</span>
+            <span id="pillSocket1" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-poliblue-500/20 text-poliblue-400 border border-poliblue-500/30">ON</span>
           </div>
 
           <!-- Tactile Power Button -->
           <div class="flex flex-col items-center justify-center py-2">
             <button id="btnPower1" onclick="toggleSocketRelay(1)" class="w-20 h-20 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer power-btn-on transition duration-200">
               <i class="fa-solid fa-power-off text-2xl mb-0.5" id="iconPower1"></i>
-              <span class="text-[10px] font-bold" id="labelPower1">ON</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider" id="labelPower1">ON</span>
             </button>
-            <span class="text-[11px] text-slate-400 mt-2">Klik tombol untuk ON / OFF</span>
+            <span class="text-[11px] text-slate-400 mt-2 font-medium">Klik untuk ON / OFF</span>
           </div>
 
           <!-- Live Metrics Grid -->
           <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-              <span class="text-slate-400 text-[10px] block font-sans">Tegangan</span>
-              <span class="text-base font-bold text-white" id="v1_val">220.4</span> V
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
+              <span class="text-slate-400 text-[10px] block font-sans">Tegangan Listrik</span>
+              <span class="text-base font-bold text-white" id="v1_val">220.4</span> <span class="text-xs text-slate-400 font-sans">V</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
               <span class="text-slate-400 text-[10px] block font-sans">Arus Beban</span>
-              <span class="text-base font-bold text-cyan-400" id="i1_val">1.85</span> A
+              <span class="text-base font-bold text-poliblue-400" id="i1_val">1.85</span> <span class="text-xs text-slate-400 font-sans">A</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
               <span class="text-slate-400 text-[10px] block font-sans">Daya Aktif</span>
-              <span class="text-base font-bold text-emerald-400" id="p1_val">391.0</span> W
+              <span class="text-base font-bold text-poliorange-400" id="p1_val">391.0</span> <span class="text-xs text-slate-400 font-sans">W</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
               <span class="text-slate-400 text-[10px] block font-sans">Suhu Kontak</span>
-              <span class="text-base font-bold text-rose-400" id="t1_val">32.8</span> °C
+              <span class="text-base font-bold text-rose-400" id="t1_val">32.8</span> <span class="text-xs text-slate-400 font-sans">°C</span>
             </div>
           </div>
         </div>
 
         <!-- Uji Coba Cepat (Fault Testing) -->
-        <div class="pt-3 mt-3 border-t border-slate-800">
+        <div class="pt-3 mt-3 border-t border-poliblue-500/15">
           <span class="text-[10px] text-slate-400 block mb-1.5 font-sans">Uji Coba Proteksi Soket #1:</span>
-          <div class="grid grid-cols-3 gap-1 text-[10px]">
-            <button onclick="injectFault(1, 'OVERCURRENT')" class="px-2 py-1.5 bg-red-950/80 hover:bg-red-900 border border-red-800 text-red-300 rounded cursor-pointer transition text-center" title="Uji lonjakan arus >10A">💥 Overcur</button>
-            <button onclick="injectFault(1, 'OVERHEAT')" class="px-2 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-800 text-rose-300 rounded cursor-pointer transition text-center" title="Uji suhu panas >65°C">🔥 Overheat</button>
-            <button onclick="injectFault(1, 'OVERVOLTAGE')" class="px-2 py-1.5 bg-amber-950/80 hover:bg-amber-900 border border-amber-800 text-amber-300 rounded cursor-pointer transition text-center" title="Uji tegangan >240V">⚡ Overvolt</button>
+          <div class="grid grid-cols-3 gap-1.5 text-[10px]">
+            <button onclick="injectFault(1, 'OVERCURRENT')" class="px-2 py-1.5 bg-red-950/80 hover:bg-red-900 border border-red-700 text-red-200 rounded-lg cursor-pointer transition text-center font-semibold" title="Uji lonjakan arus >10A">💥 Overcur</button>
+            <button onclick="injectFault(1, 'OVERHEAT')" class="px-2 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-700 text-rose-200 rounded-lg cursor-pointer transition text-center font-semibold" title="Uji suhu panas >65°C">🔥 Overheat</button>
+            <button onclick="injectFault(1, 'OVERVOLTAGE')" class="px-2 py-1.5 bg-amber-950/80 hover:bg-amber-900 border border-amber-700 text-amber-200 rounded-lg cursor-pointer transition text-center font-semibold" title="Uji tegangan >240V">⚡ Overvolt</button>
           </div>
         </div>
       </div>
 
       <!-- ================= SOKET #2 ================= -->
-      <div id="cardSocket2" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-all duration-300">
+      <div id="cardSocket2" class="bg-polinavy-900/90 border border-poliblue-500/20 rounded-2xl p-5 shadow-xl flex flex-col justify-between transition-all duration-300 hover:border-poliblue-400/40">
         <div class="space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-            <div class="flex items-center space-x-2">
-              <span class="w-6 h-6 rounded bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold text-xs">#2</span>
+          <div class="flex items-center justify-between pb-3 border-b border-poliblue-500/15">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-7 h-7 rounded-lg bg-poliblue-500/20 text-poliblue-400 flex items-center justify-center font-bold text-xs border border-poliblue-400/30">#2</span>
               <div>
                 <h3 class="text-sm font-bold text-white tracking-tight" id="nameSocket2">Stop Kontak #2 (Kulkas & Dapur)</h3>
-                <span class="text-[10px] text-slate-400">Batas Arus: 10.0A • Max: 65°C</span>
+                <span class="text-[10px] text-poliblue-200">Batas: 10.0A • Max: 65°C</span>
               </div>
             </div>
-            <span id="pillSocket2" class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-400">ON</span>
+            <span id="pillSocket2" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-poliblue-500/20 text-poliblue-400 border border-poliblue-500/30">ON</span>
           </div>
 
           <!-- Tactile Power Button -->
           <div class="flex flex-col items-center justify-center py-2">
             <button id="btnPower2" onclick="toggleSocketRelay(2)" class="w-20 h-20 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer power-btn-on transition duration-200">
               <i class="fa-solid fa-power-off text-2xl mb-0.5" id="iconPower2"></i>
-              <span class="text-[10px] font-bold" id="labelPower2">ON</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider" id="labelPower2">ON</span>
             </button>
-            <span class="text-[11px] text-slate-400 mt-2">Klik tombol untuk ON / OFF</span>
+            <span class="text-[11px] text-slate-400 mt-2 font-medium">Klik untuk ON / OFF</span>
           </div>
 
           <!-- Live Metrics Grid -->
           <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-              <span class="text-slate-400 text-[10px] block font-sans">Tegangan</span>
-              <span class="text-base font-bold text-white" id="v2_val">220.4</span> V
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
+              <span class="text-slate-400 text-[10px] block font-sans">Tegangan Listrik</span>
+              <span class="text-base font-bold text-white" id="v2_val">220.4</span> <span class="text-xs text-slate-400 font-sans">V</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
               <span class="text-slate-400 text-[10px] block font-sans">Arus Beban</span>
-              <span class="text-base font-bold text-cyan-400" id="i2_val">2.65</span> A
+              <span class="text-base font-bold text-poliblue-400" id="i2_val">2.65</span> <span class="text-xs text-slate-400 font-sans">A</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
               <span class="text-slate-400 text-[10px] block font-sans">Daya Aktif</span>
-              <span class="text-base font-bold text-emerald-400" id="p2_val">562.0</span> W
+              <span class="text-base font-bold text-poliorange-400" id="p2_val">562.0</span> <span class="text-xs text-slate-400 font-sans">W</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
               <span class="text-slate-400 text-[10px] block font-sans">Suhu Kontak</span>
-              <span class="text-base font-bold text-rose-400" id="t2_val">36.1</span> °C
+              <span class="text-base font-bold text-rose-400" id="t2_val">36.1</span> <span class="text-xs text-slate-400 font-sans">°C</span>
             </div>
           </div>
         </div>
 
         <!-- Uji Coba Cepat (Fault Testing) -->
-        <div class="pt-3 mt-3 border-t border-slate-800">
+        <div class="pt-3 mt-3 border-t border-poliblue-500/15">
           <span class="text-[10px] text-slate-400 block mb-1.5 font-sans">Uji Coba Proteksi Soket #2:</span>
-          <div class="grid grid-cols-3 gap-1 text-[10px]">
-            <button onclick="injectFault(2, 'OVERCURRENT')" class="px-2 py-1.5 bg-red-950/80 hover:bg-red-900 border border-red-800 text-red-300 rounded cursor-pointer transition text-center" title="Uji lonjakan arus >10A">💥 Overcur</button>
-            <button onclick="injectFault(2, 'OVERHEAT')" class="px-2 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-800 text-rose-300 rounded cursor-pointer transition text-center" title="Uji suhu panas >65°C">🔥 Overheat</button>
-            <button onclick="injectFault(2, 'OVERVOLTAGE')" class="px-2 py-1.5 bg-amber-950/80 hover:bg-amber-900 border border-amber-800 text-amber-300 rounded cursor-pointer transition text-center" title="Uji tegangan >240V">⚡ Overvolt</button>
+          <div class="grid grid-cols-3 gap-1.5 text-[10px]">
+            <button onclick="injectFault(2, 'OVERCURRENT')" class="px-2 py-1.5 bg-red-950/80 hover:bg-red-900 border border-red-700 text-red-200 rounded-lg cursor-pointer transition text-center font-semibold" title="Uji lonjakan arus >10A">💥 Overcur</button>
+            <button onclick="injectFault(2, 'OVERHEAT')" class="px-2 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-700 text-rose-200 rounded-lg cursor-pointer transition text-center font-semibold" title="Uji suhu panas >65°C">🔥 Overheat</button>
+            <button onclick="injectFault(2, 'OVERVOLTAGE')" class="px-2 py-1.5 bg-amber-950/80 hover:bg-amber-900 border border-amber-700 text-amber-200 rounded-lg cursor-pointer transition text-center font-semibold" title="Uji tegangan >240V">⚡ Overvolt</button>
           </div>
         </div>
       </div>
 
       <!-- ================= SOKET #3 ================= -->
-      <div id="cardSocket3" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-all duration-300">
+      <div id="cardSocket3" class="bg-polinavy-900/90 border border-poliblue-500/20 rounded-2xl p-5 shadow-xl flex flex-col justify-between transition-all duration-300 hover:border-poliblue-400/40">
         <div class="space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-            <div class="flex items-center space-x-2">
-              <span class="w-6 h-6 rounded bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold text-xs">#3</span>
+          <div class="flex items-center justify-between pb-3 border-b border-poliblue-500/15">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-7 h-7 rounded-lg bg-poliblue-500/20 text-poliblue-400 flex items-center justify-center font-bold text-xs border border-poliblue-400/30">#3</span>
               <div>
                 <h3 class="text-sm font-bold text-white tracking-tight" id="nameSocket3">Stop Kontak #3 (AC & Komputer)</h3>
-                <span class="text-[10px] text-slate-400">Batas Arus: 16.0A • Max: 65°C</span>
+                <span class="text-[10px] text-poliblue-200">Batas: 16.0A • Max: 65°C</span>
               </div>
             </div>
-            <span id="pillSocket3" class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-400">ON</span>
+            <span id="pillSocket3" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-poliblue-500/20 text-poliblue-400 border border-poliblue-500/30">ON</span>
           </div>
 
           <!-- Tactile Power Button -->
           <div class="flex flex-col items-center justify-center py-2">
             <button id="btnPower3" onclick="toggleSocketRelay(3)" class="w-20 h-20 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer power-btn-on transition duration-200">
               <i class="fa-solid fa-power-off text-2xl mb-0.5" id="iconPower3"></i>
-              <span class="text-[10px] font-bold" id="labelPower3">ON</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider" id="labelPower3">ON</span>
             </button>
-            <span class="text-[11px] text-slate-400 mt-2">Klik tombol untuk ON / OFF</span>
+            <span class="text-[11px] text-slate-400 mt-2 font-medium">Klik untuk ON / OFF</span>
           </div>
 
           <!-- Live Metrics Grid -->
           <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-              <span class="text-slate-400 text-[10px] block font-sans">Tegangan</span>
-              <span class="text-base font-bold text-white" id="v3_val">220.4</span> V
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
+              <span class="text-slate-400 text-[10px] block font-sans">Tegangan Listrik</span>
+              <span class="text-base font-bold text-white" id="v3_val">220.4</span> <span class="text-xs text-slate-400 font-sans">V</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
               <span class="text-slate-400 text-[10px] block font-sans">Arus Beban</span>
-              <span class="text-base font-bold text-cyan-400" id="i3_val">4.45</span> A
+              <span class="text-base font-bold text-poliblue-400" id="i3_val">4.45</span> <span class="text-xs text-slate-400 font-sans">A</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
               <span class="text-slate-400 text-[10px] block font-sans">Daya Aktif</span>
-              <span class="text-base font-bold text-emerald-400" id="p3_val">945.0</span> W
+              <span class="text-base font-bold text-poliorange-400" id="p3_val">945.0</span> <span class="text-xs text-slate-400 font-sans">W</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-polinavy-950/80 p-2.5 rounded-xl border border-poliblue-500/15">
               <span class="text-slate-400 text-[10px] block font-sans">Suhu Kontak</span>
-              <span class="text-base font-bold text-rose-400" id="t3_val">39.4</span> °C
+              <span class="text-base font-bold text-rose-400" id="t3_val">39.4</span> <span class="text-xs text-slate-400 font-sans">°C</span>
             </div>
           </div>
         </div>
 
         <!-- Uji Coba Cepat (Fault Testing) -->
-        <div class="pt-3 mt-3 border-t border-slate-800">
+        <div class="pt-3 mt-3 border-t border-poliblue-500/15">
           <span class="text-[10px] text-slate-400 block mb-1.5 font-sans">Uji Coba Proteksi Soket #3:</span>
-          <div class="grid grid-cols-3 gap-1 text-[10px]">
-            <button onclick="injectFault(3, 'OVERCURRENT')" class="px-2 py-1.5 bg-red-950/80 hover:bg-red-900 border border-red-800 text-red-300 rounded cursor-pointer transition text-center" title="Uji lonjakan arus >16A">💥 Overcur</button>
-            <button onclick="injectFault(3, 'OVERHEAT')" class="px-2 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-800 text-rose-300 rounded cursor-pointer transition text-center" title="Uji suhu panas >65°C">🔥 Overheat</button>
-            <button onclick="injectFault(3, 'OVERVOLTAGE')" class="px-2 py-1.5 bg-amber-950/80 hover:bg-amber-900 border border-amber-800 text-amber-300 rounded cursor-pointer transition text-center" title="Uji tegangan >240V">⚡ Overvolt</button>
+          <div class="grid grid-cols-3 gap-1.5 text-[10px]">
+            <button onclick="injectFault(3, 'OVERCURRENT')" class="px-2 py-1.5 bg-red-950/80 hover:bg-red-900 border border-red-700 text-red-200 rounded-lg cursor-pointer transition text-center font-semibold" title="Uji lonjakan arus >16A">💥 Overcur</button>
+            <button onclick="injectFault(3, 'OVERHEAT')" class="px-2 py-1.5 bg-rose-950/80 hover:bg-rose-900 border border-rose-700 text-rose-200 rounded-lg cursor-pointer transition text-center font-semibold" title="Uji suhu panas >65°C">🔥 Overheat</button>
+            <button onclick="injectFault(3, 'OVERVOLTAGE')" class="px-2 py-1.5 bg-amber-950/80 hover:bg-amber-900 border border-amber-700 text-amber-200 rounded-lg cursor-pointer transition text-center font-semibold" title="Uji tegangan >240V">⚡ Overvolt</button>
           </div>
         </div>
       </div>
@@ -296,22 +330,22 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- GRAFIK MONITORING REAL-TIME (CHART.JS)                                    -->
+    <!-- GRAFIK MONITORING REAL-TIME (TEMA POLIBATAM)                             -->
     <!-- ========================================================================= -->
-    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-3">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-800">
+    <div class="bg-polinavy-900/90 border border-poliblue-500/20 rounded-2xl p-5 shadow-xl space-y-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-poliblue-500/15">
         <div>
           <h2 class="text-sm font-bold text-white flex items-center space-x-2">
-            <i class="fa-solid fa-chart-line text-emerald-400"></i>
+            <i class="fa-solid fa-chart-line text-poliblue-400"></i>
             <span>Grafik Real-Time Multi-Stop Kontak</span>
           </h2>
-          <span class="text-[11px] text-slate-400">Perbandingan arus, suhu, dan daya antar 3 stop kontak secara langsung</span>
+          <span class="text-[11px] text-slate-400">Perbandingan kurva arus, suhu, dan daya listrik live</span>
         </div>
 
         <div class="flex items-center gap-2">
-          <button onclick="setChartMetric('current')" id="btnMetCur" class="px-3 py-1 rounded bg-cyan-600 text-white text-xs font-semibold cursor-pointer transition">Arus (A)</button>
-          <button onclick="setChartMetric('temp')" id="btnMetTemp" class="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs cursor-pointer transition">Suhu (°C)</button>
-          <button onclick="setChartMetric('power')" id="btnMetPow" class="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs cursor-pointer transition">Daya (W)</button>
+          <button onclick="setChartMetric('current')" id="btnMetCur" class="px-3 py-1 rounded-xl bg-poliblue-600 text-white text-xs font-semibold cursor-pointer transition">Arus (A)</button>
+          <button onclick="setChartMetric('temp')" id="btnMetTemp" class="px-3 py-1 rounded-xl bg-polinavy-800 hover:bg-polinavy-700 text-slate-300 text-xs cursor-pointer transition">Suhu (°C)</button>
+          <button onclick="setChartMetric('power')" id="btnMetPow" class="px-3 py-1 rounded-xl bg-polinavy-800 hover:bg-polinavy-700 text-slate-300 text-xs cursor-pointer transition">Daya (W)</button>
         </div>
       </div>
       <div class="relative w-full h-72">
@@ -322,20 +356,20 @@
     <!-- ========================================================================= -->
     <!-- LOG KEJADIAN & EKSPOR CSV                                                -->
     <!-- ========================================================================= -->
-    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-3">
-      <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+    <div class="bg-polinavy-900/90 border border-poliblue-500/20 rounded-2xl p-5 shadow-xl space-y-3">
+      <div class="flex items-center justify-between pb-2 border-b border-poliblue-500/15">
         <h2 class="text-sm font-bold text-white flex items-center space-x-2">
-          <i class="fa-solid fa-clock-rotate-left text-teal-400"></i>
+          <i class="fa-solid fa-clock-rotate-left text-poliorange-400"></i>
           <span>Log Kejadian & Alasan Terputus</span>
         </h2>
-        <button onclick="exportCsv()" class="px-3 py-1 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold rounded cursor-pointer transition flex items-center space-x-1.5 shadow">
+        <button onclick="exportCsv()" class="px-3 py-1.5 bg-poliblue-600 hover:bg-poliblue-500 text-white text-xs font-semibold rounded-xl cursor-pointer transition flex items-center space-x-1.5 shadow-md shadow-poliblue-600/30">
           <i class="fa-solid fa-file-csv"></i>
           <span>Ekspor CSV</span>
         </button>
       </div>
-      <div class="overflow-x-auto rounded-xl border border-slate-800">
+      <div class="overflow-x-auto rounded-xl border border-poliblue-500/15">
         <table class="w-full text-left text-xs text-slate-300">
-          <thead class="bg-slate-950 text-slate-400 uppercase font-semibold">
+          <thead class="bg-polinavy-950 text-poliblue-200 uppercase font-semibold">
             <tr>
               <th class="px-3 py-2.5">Waktu</th>
               <th class="px-3 py-2.5">Stop Kontak</th>
@@ -344,7 +378,7 @@
               <th class="px-3 py-2.5">Nilai Sensor</th>
             </tr>
           </thead>
-          <tbody id="tbodyEvents" class="divide-y divide-slate-800/80">
+          <tbody id="tbodyEvents" class="divide-y divide-poliblue-500/10">
             <tr><td colspan="5" class="px-3 py-4 text-center text-slate-500">Belum ada kejadian alarm tercatat.</td></tr>
           </tbody>
         </table>
@@ -353,14 +387,18 @@
 
   </main>
 
+  <!-- Footer Polibatam -->
+  <footer class="mt-8 border-t border-poliblue-500/15 py-4 text-center text-xs text-slate-400">
+    <p>Smart Socket Guard &copy; 2026 • <strong>Polibatam University</strong> (Politeknik Negeri Batam)</p>
+  </footer>
+
   <!-- Toast Notification Container -->
   <div id="toastContainer" class="fixed bottom-4 right-4 z-50 space-y-2 pointer-events-none"></div>
 
   <!-- ========================================================================= -->
-  <!-- JAVASCRIPT HYBRID ENGINE (GITHUB PAGES STANDALONE + SERVER FALLBACK)      -->
+  <!-- JAVASCRIPT HYBRID ENGINE (GITHUB PAGES COMPATIBLE)                        -->
   <!-- ========================================================================= -->
   <script>
-    // State Aplikasi
     let soundAlert = true;
     let audioCtx = null;
     let chartMetric = 'current';
@@ -368,7 +406,6 @@
     const chartData = [];
     const eventsLog = [];
 
-    // Ambang Batas Aman
     const thresholds = {
       overvoltage: 240.0,
       1: { overcurrent: 10.0, overheat: 65.0, overpower: 2200.0 },
@@ -376,61 +413,30 @@
       3: { overcurrent: 16.0, overheat: 65.0, overpower: 3500.0 }
     };
 
-    // State 3 Stop Kontak
     const sockets = {
-      1: {
-        id: 1,
-        name: 'Stop Kontak #1 (TV & Media)',
-        relayState: true,
-        isTripped: false,
-        tripDiagnostic: null,
-        metrics: { voltage: 220.4, current: 1.85, power: 391.0, temperature: 32.8 }
-      },
-      2: {
-        id: 2,
-        name: 'Stop Kontak #2 (Kulkas & Dapur)',
-        relayState: true,
-        isTripped: false,
-        tripDiagnostic: null,
-        metrics: { voltage: 220.4, current: 2.65, power: 562.0, temperature: 36.1 }
-      },
-      3: {
-        id: 3,
-        name: 'Stop Kontak #3 (AC & Komputer)',
-        relayState: true,
-        isTripped: false,
-        tripDiagnostic: null,
-        metrics: { voltage: 220.4, current: 4.45, power: 945.0, temperature: 39.4 }
-      }
+      1: { id: 1, name: 'Stop Kontak #1 (TV & Media)', relayState: true, isTripped: false, tripDiagnostic: null, metrics: { voltage: 220.4, current: 1.85, power: 391.0, temperature: 32.8 } },
+      2: { id: 2, name: 'Stop Kontak #2 (Kulkas & Dapur)', relayState: true, isTripped: false, tripDiagnostic: null, metrics: { voltage: 220.4, current: 2.65, power: 562.0, temperature: 36.1 } },
+      3: { id: 3, name: 'Stop Kontak #3 (AC & Komputer)', relayState: true, isTripped: false, tripDiagnostic: null, metrics: { voltage: 220.4, current: 4.45, power: 945.0, temperature: 39.4 } }
     };
 
-    // Variabel Simulasi Gangguan (Fault Injection)
     let globalFault = null;
     const socketFaults = { 1: null, 2: null, 3: null };
 
-    // --- INISIALISASI ---
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Langsung render kartu dan kotak diagnostik saat pertama kali halaman terbuka!
       renderCards();
       renderDiagnostic();
       initChart();
 
-      // Log awal sistem
-      addEvent(1, 'SYSTEM_START', 'INFO', 'Sistem monitoring & proteksi 3 stop kontak aktif.', '-');
+      addEvent(1, 'SYSTEM_START', 'INFO', 'Sistem monitoring & proteksi 3 stop kontak Polibatam aktif.', '-');
 
-      // 2. Jalankan Simulator Loop Mandiri (Berjalan langsung di browser!)
       setInterval(runClientTick, 1000);
-
-      // 3. Coba hubungkan WebSocket jika ada server backend
       tryConnectWebSocket();
 
-      // Audio unlock on user interaction
       document.body.addEventListener('click', () => {
         if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }, { once: true });
     });
 
-    // --- ENGINE SIMULATOR LOKAL (CLIENT-SIDE) ---
     function runClientTick() {
       const vNoise = (Math.random() - 0.5) * 1.8;
       const voltage = globalFault === 'OVERVOLTAGE' ? (253.5 + Math.random() * 4.0) : (220.5 + vNoise);
@@ -469,16 +475,13 @@
           temperature: Math.max(29.5, Math.round(s.metrics.temperature * 10) / 10)
         };
 
-        // Cek apakah ada pelanggaran proteksi
         checkLocalProtection(id);
       }
 
-      // Perbarui Tampilan
       renderCards();
       pushChartData();
     }
 
-    // --- LOGIKA PROTEKSI CUT-OFF LOKAL ---
     function checkLocalProtection(socketId) {
       const s = sockets[socketId];
       if (s.isTripped || !s.relayState) return;
@@ -492,8 +495,8 @@
           type: 'OVERVOLTAGE',
           title: 'Tegangan PLN Melonjak (Overvoltage)',
           detail: `Tegangan PLN terukur ${m.voltage}V melebihi batas aman ${thresholds.overvoltage}V!`,
-          hazard: 'Lonjakan tegangan dapat merusak adaptor catu daya dan IC elektronik.',
-          action: 'Tunggu tegangan PLN stabil kembali, lalu klik tombol Reset Proteksi di bawah.',
+          hazard: 'Lonjakan tegangan dapat merusak adaptor catu daya dan komponen elektronik.',
+          action: 'Tunggu tegangan PLN stabil, lalu klik tombol Reset Proteksi di bawah.',
           val: `${m.voltage} V`, lim: `${thresholds.overvoltage} V`
         };
       } else if (m.current > th.overcurrent) {
@@ -517,7 +520,6 @@
       }
 
       if (violation) {
-        // PEMUTUSAN OTOMATIS (CUT-OFF)
         s.relayState = false;
         s.isTripped = true;
         s.tripDiagnostic = {
@@ -536,7 +538,6 @@
       }
     }
 
-    // --- RENDER KOTAK DIAGNOSTIK KONDISI PEMUTUSAN ---
     function renderDiagnostic() {
       const box = document.getElementById('tripDiagnosticBox');
       const content = document.getElementById('diagnosticContent');
@@ -551,41 +552,41 @@
       }
 
       if (tripped.length === 0) {
-        box.className = 'rounded-2xl border border-emerald-500/30 bg-emerald-950/20 shadow-xl overflow-hidden';
-        badge.className = 'flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30';
+        box.className = 'rounded-2xl border border-poliblue-500/30 bg-polinavy-900/90 shadow-2xl overflow-hidden';
+        badge.className = 'flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-poliblue-500/10 text-poliblue-400 border border-poliblue-500/30 shadow';
         bText.innerText = '3 SOKET NORMAL';
 
         content.innerHTML = `
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div class="flex items-center space-x-3.5">
-              <div class="w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl border border-emerald-500/30 shadow-md">
+              <div class="w-11 h-11 rounded-xl bg-poliblue-500/20 text-poliblue-400 flex items-center justify-center text-xl border border-poliblue-500/30 shadow-md">
                 <i class="fa-solid fa-circle-check"></i>
               </div>
               <div>
                 <div class="flex items-center space-x-2">
                   <h2 class="text-sm sm:text-base font-bold text-white">Kondisi Sistem: 3 Stop Kontak Normal & Aman</h2>
-                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">SIAGA AKTIF</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-poliorange-500/20 text-poliorange-400 border border-poliorange-500/30">SIAGA AKTIF</span>
                 </div>
                 <p class="text-xs text-slate-300 mt-0.5">
-                  Seluruh arus beban, suhu kontak, dan tegangan PLN berada dalam batas normal. Proteksi otomatis aktif.
+                  Seluruh beban arus, suhu kontak, dan tegangan PLN stabil dalam rentang aman standar Polibatam.
                 </p>
               </div>
             </div>
-            <div class="flex items-center space-x-2 text-[11px] font-mono text-slate-300 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
-              <span class="text-emerald-400 font-bold">S1: ${sockets[1].metrics.current}A</span> • 
-              <span class="text-emerald-400 font-bold">S2: ${sockets[2].metrics.current}A</span> • 
-              <span class="text-emerald-400 font-bold">S3: ${sockets[3].metrics.current}A</span>
+            <div class="flex items-center space-x-2 text-[11px] font-mono text-slate-300 bg-polinavy-950 px-3 py-1.5 rounded-xl border border-poliblue-500/20">
+              <span class="text-poliblue-400 font-bold">S1: ${sockets[1].metrics.current}A</span> • 
+              <span class="text-poliblue-400 font-bold">S2: ${sockets[2].metrics.current}A</span> • 
+              <span class="text-poliblue-400 font-bold">S3: ${sockets[3].metrics.current}A</span>
             </div>
           </div>`;
       } else {
         box.className = 'rounded-2xl border-2 border-red-500 bg-red-950/40 shadow-2xl overflow-hidden animate-pulse-danger';
-        badge.className = 'flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-red-500/20 text-red-400 border border-red-500/40 animate-pulse';
+        badge.className = 'flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-red-500/20 text-red-400 border border-red-500/40 animate-pulse';
         bText.innerText = `${tripped.length} SOKET TERPUTUS!`;
 
         let itemsHtml = '';
         tripped.forEach(d => {
           itemsHtml += `
-            <div class="bg-slate-900 border border-red-500/60 rounded-xl p-4 space-y-2.5 shadow-lg">
+            <div class="bg-polinavy-900 border border-red-500/60 rounded-xl p-4 space-y-2.5 shadow-lg">
               <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                 <div class="flex items-center space-x-2">
                   <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-600 text-white">SOKET #${d.socketId}</span>
@@ -596,16 +597,16 @@
               <div class="text-xs text-slate-200">
                 <span class="font-bold text-red-400">Penyebab Terputus:</span> <strong>${d.title}</strong> — ${d.detail}
               </div>
-              <div class="grid grid-cols-2 gap-2 text-[11px] bg-slate-950 p-2 rounded-lg border border-slate-800 font-mono">
+              <div class="grid grid-cols-2 gap-2 text-[11px] bg-polinavy-950 p-2 rounded-lg border border-poliblue-500/15 font-mono">
                 <div>Nilai Terukur: <span class="text-red-400 font-bold">${d.val}</span></div>
                 <div>Batas Aman: <span class="text-slate-300">${d.lim}</span></div>
               </div>
               <div class="text-[11px] text-slate-400">
-                <strong class="text-amber-400">Analisis Bahaya:</strong> ${d.hazard}
+                <strong class="text-poliorange-400">Analisis Bahaya:</strong> ${d.hazard}
               </div>
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-800">
-                <span class="text-[11px] text-teal-300"><strong>Saran Solusi:</strong> ${d.action}</span>
-                <button onclick="requestReset(${d.socketId})" class="px-3.5 py-1.5 bg-red-600 hover:bg-red-500 text-white font-bold text-xs rounded-lg cursor-pointer transition shadow flex items-center justify-center space-x-1 whitespace-nowrap">
+                <span class="text-[11px] text-poliblue-300"><strong>Saran Solusi:</strong> ${d.action}</span>
+                <button onclick="requestReset(${d.socketId})" class="px-3.5 py-1.5 bg-red-600 hover:bg-red-500 text-white font-bold text-xs rounded-xl cursor-pointer transition shadow flex items-center justify-center space-x-1 whitespace-nowrap">
                   <i class="fa-solid fa-arrows-rotate"></i>
                   <span>Reset Proteksi Soket #${d.socketId}</span>
                 </button>
@@ -624,7 +625,6 @@
       }
     }
 
-    // --- RENDER KARTU STOP KONTAK ---
     function renderCards() {
       for (const id of [1, 2, 3]) {
         const s = sockets[id];
@@ -640,23 +640,23 @@
           btn.className = 'w-20 h-20 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer power-btn-tripped transition duration-200';
           icon.className = 'fa-solid fa-triangle-exclamation text-2xl mb-0.5 animate-bounce';
           label.innerText = 'TRIP';
-          pill.className = 'px-2 py-0.5 rounded text-[10px] font-semibold bg-red-500/20 text-red-400 border border-red-500/40 animate-pulse';
+          pill.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/40 animate-pulse';
           pill.innerText = 'TERPUTUS';
-          card.className = 'bg-slate-900/90 border border-red-500/60 rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-all duration-300';
+          card.className = 'bg-polinavy-900/90 border border-red-500/60 rounded-2xl p-5 shadow-xl flex flex-col justify-between transition-all duration-300';
         } else if (s.relayState) {
           btn.className = 'w-20 h-20 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer power-btn-on transition duration-200';
           icon.className = 'fa-solid fa-power-off text-2xl mb-0.5';
           label.innerText = 'ON';
-          pill.className = 'px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-400';
+          pill.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-poliblue-500/20 text-poliblue-400 border border-poliblue-500/30';
           pill.innerText = 'ON';
-          card.className = 'bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-all duration-300';
+          card.className = 'bg-polinavy-900/90 border border-poliblue-500/20 rounded-2xl p-5 shadow-xl flex flex-col justify-between transition-all duration-300 hover:border-poliblue-400/40';
         } else {
           btn.className = 'w-20 h-20 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer power-btn-off transition duration-200';
           icon.className = 'fa-solid fa-power-off text-2xl mb-0.5 text-slate-500';
           label.innerText = 'OFF';
-          pill.className = 'px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-400';
+          pill.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400 border border-slate-700';
           pill.innerText = 'OFF';
-          card.className = 'bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-all duration-300';
+          card.className = 'bg-polinavy-900/90 border border-poliblue-500/20 rounded-2xl p-5 shadow-xl flex flex-col justify-between transition-all duration-300 hover:border-poliblue-400/40';
         }
 
         document.getElementById(`v${id}_val`).innerText = Number(m.voltage || 0).toFixed(1);
@@ -666,7 +666,6 @@
       }
     }
 
-    // --- KONTROL RELAY SOKET (ON/OFF) ---
     function toggleSocketRelay(socketId) {
       const s = sockets[socketId];
       if (s.isTripped) {
@@ -679,9 +678,8 @@
 
       const actionText = s.relayState ? 'DINYALAKAN (ON)' : 'DIMATIKAN (OFF)';
       showToast(`${s.name} berhasil di-${actionText}`, s.relayState ? 'success' : 'info');
-      addEvent(socketId, s.relayState ? 'RELAY_ON' : 'RELAY_OFF', 'INFO', `${s.name} di-${actionText} manual oleh pengguna.`, `${s.metrics.current} A`);
+      addEvent(socketId, s.relayState ? 'RELAY_ON' : 'RELAY_OFF', 'INFO', `${s.name} di-${actionText} manual.`, `${s.metrics.current} A`);
 
-      // Kirim juga ke server backend jika sedang tersambung
       if (window.isBackendConnected) {
         fetch('/api/relay', {
           method: 'POST',
@@ -691,12 +689,9 @@
       }
     }
 
-    // --- KONTROL MASTER (SEMUA ON / SEMUA OFF) ---
     function masterToggleAll(targetState) {
       for (const id of [1, 2, 3]) {
-        if (!sockets[id].isTripped) {
-          sockets[id].relayState = targetState;
-        }
+        if (!sockets[id].isTripped) sockets[id].relayState = targetState;
       }
       renderCards();
       showToast(`Seluruh stop kontak berhasil di-${targetState ? 'NYALAKAN' : 'MATIKAN'}`, 'info');
@@ -711,7 +706,6 @@
       }
     }
 
-    // --- RESET PROTEKSI ---
     function requestReset(socketId) {
       const resetOne = (id) => {
         socketFaults[id] = null;
@@ -741,7 +735,6 @@
       }
     }
 
-    // --- UJI COBA SIMULASI GANGGUAN (FAULT INJECTION) ---
     function injectFault(socketId, type) {
       if (type === 'OVERVOLTAGE') {
         globalFault = 'OVERVOLTAGE';
@@ -762,7 +755,6 @@
       }
     }
 
-    // --- GRAFIK MULTI-CHANNEL (CHART.JS) ---
     function initChart() {
       const ctx = document.getElementById('multiChart').getContext('2d');
       multiChart = new Chart(ctx, {
@@ -770,9 +762,9 @@
         data: {
           labels: [],
           datasets: [
-            { label: 'Stop Kontak #1', data: [], borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.08)', borderWidth: 2, tension: 0.35, pointRadius: 2 },
-            { label: 'Stop Kontak #2', data: [], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.08)', borderWidth: 2, tension: 0.35, pointRadius: 2 },
-            { label: 'Stop Kontak #3', data: [], borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.08)', borderWidth: 2, tension: 0.35, pointRadius: 2 }
+            { label: 'Stop Kontak #1', data: [], borderColor: '#38bdf8', backgroundColor: 'rgba(56, 189, 248, 0.08)', borderWidth: 2.2, tension: 0.35, pointRadius: 2 },
+            { label: 'Stop Kontak #2', data: [], borderColor: '#fb923c', backgroundColor: 'rgba(251, 146, 60, 0.08)', borderWidth: 2.2, tension: 0.35, pointRadius: 2 },
+            { label: 'Stop Kontak #3', data: [], borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.08)', borderWidth: 2.2, tension: 0.35, pointRadius: 2 }
           ]
         },
         options: {
@@ -780,8 +772,8 @@
           maintainAspectRatio: false,
           animation: { duration: 200 },
           scales: {
-            x: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8', font: { size: 10 } } },
-            y: { grid: { color: '#1e293b' }, ticks: { color: '#cbd5e1', font: { size: 10 } } }
+            x: { grid: { color: 'rgba(56, 189, 248, 0.1)' }, ticks: { color: '#94a3b8', font: { size: 10 } } },
+            y: { grid: { color: 'rgba(56, 189, 248, 0.1)' }, ticks: { color: '#cbd5e1', font: { size: 10 } } }
           }
         }
       });
@@ -789,21 +781,15 @@
 
     function setChartMetric(m) {
       chartMetric = m;
-      document.getElementById('btnMetCur').className = m === 'current' ? 'px-3 py-1 rounded bg-cyan-600 text-white text-xs font-semibold cursor-pointer' : 'px-3 py-1 rounded bg-slate-800 text-slate-300 text-xs cursor-pointer';
-      document.getElementById('btnMetTemp').className = m === 'temp' ? 'px-3 py-1 rounded bg-rose-600 text-white text-xs font-semibold cursor-pointer' : 'px-3 py-1 rounded bg-slate-800 text-slate-300 text-xs cursor-pointer';
-      document.getElementById('btnMetPow').className = m === 'power' ? 'px-3 py-1 rounded bg-emerald-600 text-white text-xs font-semibold cursor-pointer' : 'px-3 py-1 rounded bg-slate-800 text-slate-300 text-xs cursor-pointer';
+      document.getElementById('btnMetCur').className = m === 'current' ? 'px-3 py-1 rounded-xl bg-poliblue-600 text-white text-xs font-semibold cursor-pointer' : 'px-3 py-1 rounded-xl bg-polinavy-800 text-slate-300 text-xs cursor-pointer';
+      document.getElementById('btnMetTemp').className = m === 'temp' ? 'px-3 py-1 rounded-xl bg-rose-600 text-white text-xs font-semibold cursor-pointer' : 'px-3 py-1 rounded-xl bg-polinavy-800 text-slate-300 text-xs cursor-pointer';
+      document.getElementById('btnMetPow').className = m === 'power' ? 'px-3 py-1 rounded-xl bg-poliorange-600 text-white text-xs font-semibold cursor-pointer' : 'px-3 py-1 rounded-xl bg-polinavy-800 text-slate-300 text-xs cursor-pointer';
       updateChart();
     }
 
     function pushChartData() {
       const time = new Date().toLocaleTimeString('id-ID', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      chartData.push({
-        time,
-        1: sockets[1].metrics,
-        2: sockets[2].metrics,
-        3: sockets[3].metrics
-      });
-
+      chartData.push({ time, 1: sockets[1].metrics, 2: sockets[2].metrics, 3: sockets[3].metrics });
       if (chartData.length > 25) chartData.shift();
       updateChart();
     }
@@ -822,15 +808,10 @@
       multiChart.update('none');
     }
 
-    // --- LOG KEJADIAN & EKSPOR CSV ---
     function addEvent(socketId, eventType, severity, message, metricValue) {
       const item = {
         timestamp: new Date().toLocaleTimeString('id-ID'),
-        socketId,
-        eventType,
-        severity,
-        message,
-        metricValue
+        socketId, eventType, severity, message, metricValue
       };
       eventsLog.unshift(item);
       if (eventsLog.length > 30) eventsLog.pop();
@@ -838,17 +819,17 @@
       const tbody = document.getElementById('tbodyEvents');
       let html = '';
       eventsLog.forEach(e => {
-        let badgeColor = 'bg-slate-800 text-slate-300';
+        let badgeColor = 'bg-polinavy-800 text-slate-300 border border-poliblue-500/20';
         if (e.severity === 'DANGER') badgeColor = 'bg-red-500/20 text-red-400 border border-red-500/40';
-        else if (e.severity === 'INFO') badgeColor = 'bg-teal-500/20 text-teal-300';
+        else if (e.severity === 'INFO') badgeColor = 'bg-poliblue-500/20 text-poliblue-300 border border-poliblue-500/30';
 
         html += `
-          <tr class="hover:bg-slate-800/40 transition">
+          <tr class="hover:bg-poliblue-500/5 transition">
             <td class="px-3 py-2 text-slate-400 font-mono">${e.timestamp}</td>
-            <td class="px-3 py-2 font-semibold text-teal-400">Soket #${e.socketId}</td>
-            <td class="px-3 py-2"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${badgeColor}">${e.eventType}</span></td>
+            <td class="px-3 py-2 font-semibold text-poliblue-400">Soket #${e.socketId}</td>
+            <td class="px-3 py-2"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${badgeColor}">${e.eventType}</span></td>
             <td class="px-3 py-2 text-white">${e.message}</td>
-            <td class="px-3 py-2 font-mono text-amber-300">${e.metricValue}</td>
+            <td class="px-3 py-2 font-mono text-poliorange-400">${e.metricValue}</td>
           </tr>`;
       });
       tbody.innerHTML = html;
@@ -863,14 +844,13 @@
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.setAttribute('href', url);
-      link.setAttribute('download', `log_proteksi_${Date.now()}.csv`);
+      link.setAttribute('download', `log_proteksi_polibatam_${Date.now()}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       showToast('File CSV berhasil diunduh!', 'success');
     }
 
-    // --- AUDIO ALARM BEEP ---
     function playAlarmSound() {
       if (!soundAlert) return;
       try {
@@ -894,20 +874,19 @@
 
     function toggleSoundAlert() {
       soundAlert = !soundAlert;
-      document.getElementById('soundIcon').className = soundAlert ? 'fa-solid fa-volume-high text-emerald-400' : 'fa-solid fa-volume-xmark text-slate-500';
+      document.getElementById('soundIcon').className = soundAlert ? 'fa-solid fa-volume-high text-poliorange-400' : 'fa-solid fa-volume-xmark text-slate-500';
       document.getElementById('soundText').innerText = soundAlert ? 'Suara Aktif' : 'Suara Mati';
       showToast(soundAlert ? 'Suara alarm diaktifkan' : 'Suara alarm dibisukan', 'info');
       if (soundAlert) playAlarmSound();
     }
 
-    // --- TOAST HELPER ---
     function showToast(msg, type = 'info') {
       const c = document.getElementById('toastContainer');
       const t = document.createElement('div');
-      let colors = 'bg-slate-900 text-slate-200 border-slate-700';
-      if (type === 'success') colors = 'bg-emerald-950 text-emerald-100 border-emerald-500/50';
-      else if (type === 'danger') colors = 'bg-red-950 text-red-100 border-red-500/60';
-      else if (type === 'warning') colors = 'bg-amber-950 text-amber-100 border-amber-500/60';
+      let colors = 'bg-polinavy-900 text-slate-200 border-poliblue-500/20';
+      if (type === 'success') colors = 'bg-poliblue-950 text-poliblue-100 border-poliblue-400/50 shadow-poliblue-500/20';
+      else if (type === 'danger') colors = 'bg-red-950 text-red-100 border-red-500/60 shadow-red-500/20';
+      else if (type === 'warning') colors = 'bg-amber-950 text-amber-100 border-poliorange-500/60 shadow-poliorange-500/20';
 
       t.className = `px-4 py-2.5 rounded-xl border text-xs font-semibold shadow-2xl pointer-events-auto flex items-center space-x-2 transition-all duration-300 ${colors}`;
       t.innerHTML = `<span>${msg}</span>`;
@@ -915,21 +894,12 @@
       setTimeout(() => { t.remove(); }, 3200);
     }
 
-    // --- KONEKSI WEBSOCKET OPTIONAL (JIKA MEMILIKI SERVER BACKEND) ---
     function tryConnectWebSocket() {
-      // Jika di GitHub Pages, kita tidak perlu memaksakan ws:// ke github.io karena pasti gagal
-      if (location.hostname.includes('github.io')) {
-        document.getElementById('modeText').innerText = 'Mode GitHub Pages (Simulasi Siap Uji)';
-        return;
-      }
-
+      if (location.hostname.includes('github.io')) return;
       try {
         const wsUrl = `${location.protocol === 'https:' ? 'wss:' : 'ws:'}//${location.host}`;
         const ws = new WebSocket(wsUrl);
-        ws.onopen = () => {
-          window.isBackendConnected = true;
-          document.getElementById('modeText').innerText = 'Server Backend Online';
-        };
+        ws.onopen = () => { window.isBackendConnected = true; };
         ws.onmessage = (e) => {
           try {
             const msg = JSON.parse(e.data);

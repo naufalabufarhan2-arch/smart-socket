@@ -208,6 +208,12 @@ app.get('/', (req, res) => {
   res.type('html').send(indexHtml);
 });
 
+const logoBuffer = fs.readFileSync(path.join(__dirname, 'logo.png'));
+
+app.get('/logo.png', (req, res) => {
+  res.type('image/png').send(logoBuffer);
+});
+
 app.get('/api/status', (req, res) => {
   const activeDiagnostics = Object.values(sockets).filter(s => s.isTripped && s.tripDiagnostic).map(s => s.tripDiagnostic);
   res.json({ sockets, activeDiagnostics });
