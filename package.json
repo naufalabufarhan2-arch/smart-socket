@@ -1,0 +1,33 @@
+{
+  "name": "smart-socket-guard",
+  "version": "1.0.0",
+  "description": "Web-based IoT smart socket monitoring & control with 3-channel protection against Overcurrent, Overheated, and Overvoltage",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node -e \"console.log('Validating modules...'); require('./database'); require('./simulator'); console.log('Syntax check passed!');\""
+  },
+  "keywords": [
+    "iot",
+    "smart-socket",
+    "esp32",
+    "overcurrent-protection",
+    "overheat-protection",
+    "overvoltage-protection",
+    "chartjs",
+    "sqlite",
+    "websocket",
+    "home-automation",
+    "stop-kontak"
+  ],
+  "author": "Smart Socket Guard Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "ws": "^8.18.0"
+  }
+}
