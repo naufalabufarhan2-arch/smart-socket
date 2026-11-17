@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Socket Guard - Polibatam</title>
+  <title>Smart Extension - Polibatam</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -79,7 +79,7 @@
         
         <div>
           <div class="flex items-center space-x-2">
-            <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Smart Socket Guard</h1>
+            <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Smart Extension</h1>
             <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-polibatam-orange text-white">POLIBATAM</span>
             <span class="hidden sm:inline px-2 py-0.5 rounded text-[10px] font-bold bg-polibatam-card text-polibatam-sky border border-polibatam-border">3 CHANNEL</span>
           </div>
@@ -457,7 +457,7 @@
 
   <!-- Footer Polibatam -->
   <footer class="mt-8 border-t border-polibatam-border/70 py-4 text-center text-xs text-slate-400 bg-polibatam-bg">
-    <p>Smart Socket Guard &copy; 2026 • <strong>Polibatam</strong> (Politeknik Negeri Batam)</p>
+    <p>Smart Extension &copy; 2026 • <strong>Polibatam</strong> (Politeknik Negeri Batam)</p>
   </footer>
 
   <!-- Toast Notification Container -->
@@ -600,6 +600,7 @@
         playAlarmSound();
         renderDiagnostic();
         renderCards();
+        trackTripForHistory(socketId);
 
         addEvent(socketId, `${violation.type}_TRIP`, 'DANGER', `[AUTO CUT-OFF] ${violation.detail}`, violation.val);
         showToast(`⚠️ PROTEKSI AKTIF: ${s.name} diputus otomatis!`, 'danger');

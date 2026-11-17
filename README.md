@@ -1,4 +1,4 @@
-# ⚡ Smart Socket Guard (3-Channel)
+# ⚡ Smart Extension (3-Channel) - Polibatam
 
 Aplikasi web monitoring dan kontrol proteksi untuk **3 Stop Kontak Pintar** dengan pemutusan otomatis (*Auto Cut-Off*) saat terjadi **Overcurrent**, **Overheated**, dan **Overvoltage**.
 

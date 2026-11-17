@@ -1,5 +1,5 @@
 // ============================================================================
-// Smart Socket Guard - Backend Server Terpadu (Single File)
+// Smart Extension - Backend Server Terpadu (Single File)
 // Fitur: Express REST API, WebSocket Live, SQLite Native, Simulator & Proteksi
 // ============================================================================
 
@@ -295,7 +295,7 @@ app.get('/api/export/csv', (req, res) => {
 // Jalankan Server
 server.listen(PORT, () => {
   console.log(`====================================================`);
-  console.log(`🚀 Smart Socket Guard Server Berjalan di Port ${PORT}`);
+  console.log(`🚀 Smart Extension Server Berjalan di Port ${PORT}`);
   console.log(`📡 URL Web: http://localhost:${PORT}`);
   console.log(`====================================================`);
 });

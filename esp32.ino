@@ -1,5 +1,5 @@
 /*
-  Smart Socket Guard - Firmware ESP32 (3-Channel)
+  Smart Extension - Firmware ESP32 (3-Channel)
   Pinout:
   - Relay 1: GPIO 26 (Stop Kontak #1)
   - Relay 2: GPIO 27 (Stop Kontak #2)
